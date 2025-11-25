@@ -17,47 +17,43 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class PasswordValidatorTest {
     
-    private static final int MIN_LEN = 8;
-    private static final int MAX_LEN = 64;
-   
-    private static final String SPECIALS = "!@#$%^&*()_-+=\\{}[]|:;'<>.,?/";
-    
-    public static boolean isValid(String password) {
-        if (password == null || password.isEmpty()) {
-            throw new IllegalArgumentException("La contraseña no puede ser nula o vacía");
-        }
-
-        if (password.length() < MIN_LEN || password.length() > MAX_LEN) return false;
-
-        
-        if (Character.isWhitespace(password.charAt(0)) || Character.isWhitespace(password.charAt(password.length()-1))) {
-       
-        }
-
-        boolean hasUpper = false, hasLower = false, hasDigit = false, hasSpecial = false;
-        boolean prevWasSpace = false;
-
-        for (char c : password.toCharArray()) {
-            if (c == ' ') {
-               
-                if (prevWasSpace) return false;
-                prevWasSpace = true;
-                continue;
-            } else {
-                prevWasSpace = false;
-            }
-
-            if (Character.isUpperCase(c)) hasUpper = true;
-            else if (Character.isLowerCase(c)) hasLower = true;
-            else if (Character.isDigit(c)) hasDigit = true;
-            else {
-               
-                if (SPECIALS.indexOf(c) >= 0) hasSpecial = true;
-        
-            }
-        }
-
-        return hasUpper && hasLower && hasDigit && hasSpecial;
+    @Test
+    void passwordValidaDebeRetornarTrue() {
+        assertTrue(PasswordValidator.isValid("Secure123!"));
     }
+
+    @Test
+    void passwordNullLanzaIllegalArgumentException() {
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
+            () -> PasswordValidator.isValid(null));
+        assertEquals("La contraseña no puede ser nula o vacía", ex.getMessage());
+    }
+
+    @Test
+    void passwordDemasiadoCortaRetornaFalse() {
+        assertFalse(PasswordValidator.isValid("Ab1!cd")); // <8
+    }
+
+    @Test
+    void passwordSinMayusculaONumeroRetornaFalse() {
+        assertFalse(PasswordValidator.isValid("nosecura!")); 
+    }
+
+    @Test
+void passwordConEspaciosConsecutivosRetornaFalse_yConEspacioSimpleValido() {
+    assertFalse(PasswordValidator.isValid("Abc  123!d")); 
+    assertTrue(PasswordValidator.isValid("AbcA123!d"));   
+}
+
+    @Test
+    void agrupadas_variasValidaciones_assertAll() {
+        assertAll(
+            () -> assertFalse(PasswordValidator.isValid("abcdefgh")),        
+            () -> assertFalse(PasswordValidator.isValid("ABCDEFGH")),         
+            () -> assertFalse(PasswordValidator.isValid("Abcdefgh")),        
+            () -> assertTrue(PasswordValidator.isValid("Abcdef1!"))           
+        );
+    }
+    
     
 }
