@@ -1,22 +1,11 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.practica_inicial;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+public class EJERCICIO_1 {
 
-/**
- *
- * @author VERO VICTUS
- */
-public class PasswordValidatorTest {
-    
     private static final int MIN_LEN = 8;
     private static final int MAX_LEN = 64;
    
@@ -31,7 +20,7 @@ public class PasswordValidatorTest {
 
         
         if (Character.isWhitespace(password.charAt(0)) || Character.isWhitespace(password.charAt(password.length()-1))) {
-       
+            throw new IllegalArgumentException("La contraseña no puede contener espacio al inicio o al final");
         }
 
         boolean hasUpper = false, hasLower = false, hasDigit = false, hasSpecial = false;
@@ -56,7 +45,6 @@ public class PasswordValidatorTest {
         
             }
         }
-
         return hasUpper && hasLower && hasDigit && hasSpecial;
-    }
+    }    
 }

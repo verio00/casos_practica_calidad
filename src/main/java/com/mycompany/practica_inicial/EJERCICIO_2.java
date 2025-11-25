@@ -4,11 +4,11 @@
  */
 package com.mycompany.practica_inicial;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
-public class InventoryManager {
+
+public class EJERCICIO_2 {
 
     private Map<String, Integer> inventory = new HashMap<>();
 
@@ -38,6 +38,5 @@ public class InventoryManager {
 
     public Map<String, Integer> getInventory() {
         return inventory;
-    }
+    }    
 }
-

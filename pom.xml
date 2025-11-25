@@ -53,7 +53,7 @@
                                             <!-- Ratio de cobertura -->
                                             <value>COVEREDRATIO</value>
                                             <!-- Mínimo 98% -->
-                                            <minimum>0.60</minimum>
+                                            <minimum>0.98</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
