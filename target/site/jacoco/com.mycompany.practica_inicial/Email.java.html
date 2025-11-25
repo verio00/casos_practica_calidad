@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Email.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">practica_inicial</a> &gt; <a href="index.source.html" class="el_package">com.mycompany.practica_inicial</a> &gt; <span class="el_source">Email.java</span></div><h1>Email.java</h1><pre class="source lang-java linenums">/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.practica_inicial;
+
+/**
+ *
+ * @author VERO VICTUS
+ */
+<span class="fc" id="L11">public class Email {</span>
+
+    public boolean isValidEmail(String email) {
+
+<span class="fc bfc" id="L15" title="All 4 branches covered.">        if (email == null || email.trim().isEmpty()) {</span>
+<span class="fc" id="L16">            throw new IllegalArgumentException(&quot;El correo no puede ser nulo o vacío&quot;);</span>
+        }
+
+        // Longitud mínima y máxima
+<span class="pc bpc" id="L20" title="2 of 4 branches missed.">        if (email.length() &lt; 6 || email.length() &gt; 254) {</span>
+        
+        }
+
+        // Debe contener exactamente un @
+<span class="pc bpc" id="L25" title="1 of 4 branches missed.">        if (!email.contains(&quot;@&quot;) || email.indexOf(&quot;@&quot;) != email.lastIndexOf(&quot;@&quot;)) {</span>
+<span class="fc" id="L26">            return false;</span>
+        }
+
+<span class="fc" id="L29">        String[] parts = email.split(&quot;@&quot;);</span>
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">        if (parts.length != 2) return false;</span>
+
+<span class="fc" id="L32">        String local = parts[0];</span>
+<span class="fc" id="L33">        String domain = parts[1];</span>
+
+        // Validar parte local
+<span class="pc bpc" id="L36" title="1 of 4 branches missed.">        if (local.startsWith(&quot;.&quot;) || local.endsWith(&quot;.&quot;)) return false;</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (local.contains(&quot;..&quot;)) return false;</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">        if (!local.matches(&quot;[A-Za-z0-9._-]+&quot;)) return false;</span>
+
+        // Validar dominio
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (!domain.contains(&quot;.&quot;)) return false;</span>
+
+<span class="fc" id="L43">        int lastDot = domain.lastIndexOf(&quot;.&quot;);</span>
+<span class="fc" id="L44">        String dominioNombre = domain.substring(0, lastDot);</span>
+<span class="fc" id="L45">        String extension = domain.substring(lastDot + 1);</span>
+
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        if (dominioNombre.length() &lt; 2) return false;</span>
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">        if (!extension.matches(&quot;[A-Za-z]{2,6}&quot;)) return false;</span>
+
+<span class="fc" id="L50">        return true;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
