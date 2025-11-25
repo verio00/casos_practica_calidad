@@ -4,12 +4,8 @@
  */
 package com.mycompany.practica_inicial;
 
-/**
- *
- * @author VERO VICTUS
- */
-public class PasswordValidator {
-    
+public class EJERCICIO_1 {
+
     private static final int MIN_LEN = 8;
     private static final int MAX_LEN = 64;
    
@@ -24,7 +20,7 @@ public class PasswordValidator {
 
         
         if (Character.isWhitespace(password.charAt(0)) || Character.isWhitespace(password.charAt(password.length()-1))) {
-       
+            throw new IllegalArgumentException("La contraseña no puede contener espacio al inicio o al final");
         }
 
         boolean hasUpper = false, hasLower = false, hasDigit = false, hasSpecial = false;
@@ -49,7 +45,6 @@ public class PasswordValidator {
         
             }
         }
-
         return hasUpper && hasLower && hasDigit && hasSpecial;
     }    
 }
