@@ -7,9 +7,12 @@ package com.mycompany.practica_inicial;
 import java.util.HashMap;
 import java.util.Map;
 
-
-public class EJERCICIO_2 {
-
+/**
+ *
+ * @author VERO VICTUS
+ */
+public class InventoryManager {
+    
     private Map<String, Integer> inventory = new HashMap<>();
 
     public void addItem(String item, int quantity) {
@@ -35,4 +38,8 @@ public class EJERCICIO_2 {
     public int getQuantity(String item) {
         return inventory.getOrDefault(item, 0);
     }
+
+    public Map<String, Integer> getInventory() {
+        return inventory;
+    }    
 }
