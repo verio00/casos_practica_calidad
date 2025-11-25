@@ -4,9 +4,12 @@
  */
 package com.mycompany.practica_inicial;
 
-
-public class EJERCICIO_3 {
-
+/**
+ *
+ * @author VERO VICTUS
+ */
+public class Email {
+    
     public boolean isValidEmail(String email) {
 
         if (email == null || email.trim().isEmpty()) {
@@ -15,14 +18,16 @@ public class EJERCICIO_3 {
 
         // Longitud mínima y máxima
         if (email.length() < 6 || email.length() > 254) {
-            return false; // aquí ya aplicas la regla de longitud
+        
         }
 
-        // Debe contener exactamente un @ -> ahora lo validamos con split
-        String[] parts = email.split("@");
-        if (parts.length != 2) {
+        // Debe contener exactamente un @
+        if (!email.contains("@") || email.indexOf("@") != email.lastIndexOf("@")) {
             return false;
         }
+
+        String[] parts = email.split("@");
+        if (parts.length != 2) return false;
 
         String local = parts[0];
         String domain = parts[1];
@@ -43,5 +48,6 @@ public class EJERCICIO_3 {
         if (!extension.matches("[A-Za-z]{2,6}")) return false;
 
         return true;
-    }    
+    }
+    
 }
